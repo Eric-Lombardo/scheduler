@@ -4,46 +4,7 @@ import axios from 'axios'
 import "components/Application.scss";
 import DayList from 'components/DayList'
 import Appointment from 'components/Appointment/index'
-
-// mock data appointments
-const appointments = [
-  {
-    id: 1,
-    time: "12pm",
-  },
-  {
-    id: 2,
-    time: "1pm",
-    interview: {
-      student: "Person A",
-      interviewer: {
-        id: 1,
-        name: "Sylvia Palmer",
-        avatar: "https://i.imgur.com/LpaY82x.png",
-      }
-    }
-  },
-  {
-    id: 3,
-    time: "2pm"
-  },
-  {
-    id: 4,
-    time: "3pm",
-    interview: {
-      student: "Person B",
-      interviewer: {
-        id: 1,
-        name: "Tori Malcolm",
-        avatar: "https://i.imgur.com/Nmx0Qxo.png",
-      }
-    }
-  },
-  {
-    id: 5,
-    time: "4pm"
-  }
-];
+import { getAppointmentsForDay, getInterview } from '../helpers/selectors'
 
 function Application(props) {
 
@@ -51,17 +12,37 @@ function Application(props) {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    appointments: {}
+    appointments: {},
+    interviewers: {}
   })
   const setDay = day => setState({...state, day})
 
+  // api request to fetch data
   useEffect(() => {
     const daysAPI = axios.get('/api/days')
     const appointmentsAPI = axios.get('/api/appointments')
+    const interviewersAPI = axios.get('/api/interviewers')
     Promise
-      .all([daysAPI, appointmentsAPI])
-      .then(all => setState(prev => ({...prev, days: all[0].data, appointments: all[1].data})))
+      .all([daysAPI, appointmentsAPI, interviewersAPI])
+      .then(all => setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data})))
+      // .then(all => console.log(all[1]))
   }, [])
+
+  // from helper functions folder
+  const appointments = getAppointmentsForDay(state, state.day)
+  // create an array of Appointment components to render out
+  const appointmentComponents = appointments.map(item => {
+    const interview = getInterview(state, item.interview)
+    return (
+      <Appointment 
+        key={item.id}
+        id={item.id}
+        time={item.time}
+        interview={interview}
+      />
+    )
+  })
+  appointmentComponents.push(<Appointment key="last" item="5pm"/>)  
 
   return (
     <main className="layout">
@@ -90,11 +71,7 @@ function Application(props) {
 
       </section>
       <section className="schedule">
-        {appointments.map(item => <Appointment 
-            key={item.id}
-            {...item}
-          />
-        )}
+        {appointmentComponents}
       </section>
     </main>
   );

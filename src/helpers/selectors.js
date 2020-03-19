@@ -18,3 +18,17 @@ export function getAppointmentsForDay(state, day) {
   return outputArr
 }
 
+// ======================================================================
+// ======================================================================
+
+export function getInterview(state, interview) {
+  if (interview === null) {return null}
+
+  let interviewerId = interview.interviewer
+  let interviewerInfo = state.interviewers[interviewerId]
+
+  return ({
+    student: interview.student,
+    interviewer: interviewerInfo
+  })
+}
