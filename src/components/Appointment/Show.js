@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 // takes in these props
 // student:String eg. "Lydia Miller-Jones"
@@ -7,11 +7,8 @@ import React, { useState } from 'react'
 // onDelete:Function to be called when the user clicks the Delete button
 
 function Show(props) {
-  const [name, setName] = useState(props.name || "");
-  const [interviewer, setInterviewer] = useState(props.interviewer || null);
-
   function cancelInterview() {
-    props.onDelete(name, interviewer)
+    props.onDelete()
   }
 
   return (

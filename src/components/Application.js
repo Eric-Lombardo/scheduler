@@ -45,7 +45,7 @@ function Application(props) {
       .then(() => setState({...state, appointments}))
   }
 // =======================================================
-  function cancelInterview(id, interview) {
+  function cancelInterview(id) {
     const appointment = {
       ...state.appointments[id],
       interview: null
