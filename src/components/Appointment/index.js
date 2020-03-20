@@ -35,9 +35,8 @@ function Appointment(props) {
   }
 
   function removeInterview() {
-    transition(CONFIRM)
-    // transition(DELETING);
-    // props.cancelInterview(props.id, interview).then(() => transition(EMPTY))
+    transition(DELETING);
+    props.cancelInterview(props.id).then(() => transition(EMPTY))
   }
 
   return (
@@ -45,10 +44,7 @@ function Appointment(props) {
       <Header time={props.time}/>
       {mode === CONFIRM && <Confirm 
         message="Delete appointment"
-        onConfirm={() => {
-          transition(DELETING)
-          props.cancelInterview(props.id).then(() => transition(EMPTY))
-        }}
+        onConfirm={removeInterview}
         onCancel={() => transition(SHOW)}
         />
       }
@@ -58,7 +54,7 @@ function Appointment(props) {
       {mode === SHOW && <Show 
         student={props.interview.student}
         interviewer={props.interview.interviewer}
-        onDelete={removeInterview}
+        onDelete={() => transition(CONFIRM)}
         />
       }
       {mode === CREATE && <Form 

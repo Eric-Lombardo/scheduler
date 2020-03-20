@@ -35,7 +35,10 @@ function Form(props) {
   }
 
   function save() {
-    props.onSave(name, interviewer)
+    // MAKE SURE USER CANT SUBMIT WITHOUT TYPING NAME AND CHOOSING INTERVIWER
+    if (name && interviewer) {
+      props.onSave(name, interviewer)
+    }
   }
 
   return (
