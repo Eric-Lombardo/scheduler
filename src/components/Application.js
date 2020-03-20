@@ -4,13 +4,13 @@ import axios from 'axios'
 import "components/Application.scss";
 import DayList from 'components/DayList'
 import Appointment from 'components/Appointment/index'
-import { getAppointmentsForDay, getInterview } from '../helpers/selectors'
+import { getAppointmentsForDay, getInterviewersForDay, getInterview } from '../helpers/selectors'
 
 function Application(props) {
 
   // state logic
   const [state, setState] = useState({
-    day: "Monday",
+    day: "Tuesday",
     days: [],
     appointments: {},
     interviewers: {}
@@ -28,21 +28,21 @@ function Application(props) {
       // .then(all => console.log(all[1]))
   }, [])
 
-  // from helper functions folder
-  const appointments = getAppointmentsForDay(state, state.day)
   // create an array of Appointment components to render out
+  const appointments = getAppointmentsForDay(state, state.day)
   const appointmentComponents = appointments.map(item => {
-    const interview = getInterview(state, item.interview)
+    const interview = getInterview(state, item.interview) // this was here before
     return (
       <Appointment 
         key={item.id}
         id={item.id}
         time={item.time}
         interview={interview}
+        interviewers={getInterviewersForDay(state, state.day)}
       />
     )
   })
-  appointmentComponents.push(<Appointment key="last" item="5pm"/>)  
+  appointmentComponents.push(<Appointment key="last" item="5pm"/>)
 
   return (
     <main className="layout">
@@ -71,6 +71,7 @@ function Application(props) {
 
       </section>
       <section className="schedule">
+        {/* {console.log(state.interviewers)} */}
         {appointmentComponents}
       </section>
     </main>

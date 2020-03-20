@@ -19,6 +19,25 @@ export function getAppointmentsForDay(state, day) {
 }
 
 // ======================================================================
+export function getInterviewersForDay(state, day) {
+  let interviewerList = []
+  let outputArr = []
+
+  // target specific day
+  for (const item of state.days) {
+    if (item.name === day) {
+      interviewerList = item.interviewers;
+    }
+  }
+
+  // fetching interviewers info by using the id's in interviewerList
+  for (let item of interviewerList) {
+    if(state.interviewers[item]) {
+      outputArr.push(state.interviewers[item])
+    }
+  }
+  return outputArr
+}
 // ======================================================================
 
 export function getInterview(state, interview) {
