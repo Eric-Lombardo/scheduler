@@ -7,8 +7,13 @@ import React from 'react'
 // onDelete:Function to be called when the user clicks the Delete button
 
 function Show(props) {
+
   function cancelInterview() {
     props.onDelete()
+  }
+
+  function editInterview() {
+    props.onEdit()
   }
 
   return (
@@ -23,7 +28,7 @@ function Show(props) {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <img
-            onClick={props.onEdit}
+            onClick={editInterview}
             className="appointment__actions-button"
             src="images/edit.png"
             alt="Edit"
