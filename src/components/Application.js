@@ -44,6 +44,22 @@ function Application(props) {
       .put(`/api/appointments/${id}`, {interview: interview})
       .then(() => setState({...state, appointments}))
   }
+// =======================================================
+  function cancelInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    }
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    }
+
+    return axios
+      .delete(`/api/appointments/${id}`, {interview: null})
+      .then(() => setState({...state, appointments}))
+  }
   
   // create an array of Appointment components to render out
   const appointments = getAppointmentsForDay(state, state.day)
@@ -57,6 +73,7 @@ function Application(props) {
         interview={interview}
         interviewers={getInterviewersForDay(state, state.day)}
         bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
     )
   })

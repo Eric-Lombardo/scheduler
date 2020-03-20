@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 // takes in these props
 // student:String eg. "Lydia Miller-Jones"
@@ -7,6 +7,13 @@ import React from 'react'
 // onDelete:Function to be called when the user clicks the Delete button
 
 function Show(props) {
+  const [name, setName] = useState(props.name || "");
+  const [interviewer, setInterviewer] = useState(props.interviewer || null);
+
+  function cancelInterview() {
+    props.onDelete(name, interviewer)
+  }
+
   return (
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">
@@ -25,7 +32,7 @@ function Show(props) {
             alt="Edit"
             />
           <img
-            onClick={props.onDelete}
+            onClick={cancelInterview}
             className="appointment__actions-button"
             src="images/trash.png"
             alt="Delete"
