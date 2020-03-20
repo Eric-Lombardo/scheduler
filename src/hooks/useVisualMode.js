@@ -6,7 +6,7 @@ function useVisualMode(initialMode) {
 
   function transition(newMode, replaceBool) {
     setMode(newMode)
-    replaceBool ? setHistory([initialMode]) : history.push(newMode)
+    replaceBool ? setHistory(prev => [...prev, initialMode]) : history.push(newMode)
   }
 
   function back() {

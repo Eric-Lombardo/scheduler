@@ -34,19 +34,19 @@ function Appointment(props) {
       interviewer
     };
 
-    transition(SAVING);
+    transition(SAVING, true);
     props
       .bookInterview(props.id, interview)
       .then(() => transition(SHOW))
-      .catch(() => transition(ERROR_SAVE))
+      .catch(() => transition(ERROR_SAVE, true))
   }
 // =========================================================================
   function removeInterview() {
-    transition(DELETING);
+    transition(DELETING, true);
     props
     .cancelInterview(props.id)
     .then(() => transition(EMPTY))
-    .catch(() => transition(ERROR_DELETE))
+    .catch(() => transition(ERROR_DELETE, true))
   }
 
   return (
@@ -67,9 +67,17 @@ function Appointment(props) {
         />
       }
       {mode === SAVING && <Status message="Saving"/>}
-      {mode === ERROR_SAVE && <Error message="Could not save appointment"/>}
+      {mode === ERROR_SAVE && <Error 
+        message="Could not save appointment" 
+        onClose={() => back()}
+        />
+      }
       {mode === DELETING && <Status message="Deleting"/>}
-      {mode === ERROR_DELETE && <Error message="Could not delete appointment"/>}
+      {mode === ERROR_DELETE && <Error 
+        message="Could not delete appointment"
+        onClose={() => back()}
+        />
+      }
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)}/>}
       {mode === SHOW && <Show 
         student={props.interview.student}
