@@ -16,18 +16,23 @@ function Application(props) {
     interviewers: {}
   })
   const setDay = day => setState({...state, day})
-
+  
   // api request to fetch data
   useEffect(() => {
     const daysAPI = axios.get('/api/days')
     const appointmentsAPI = axios.get('/api/appointments')
     const interviewersAPI = axios.get('/api/interviewers')
     Promise
-      .all([daysAPI, appointmentsAPI, interviewersAPI])
-      .then(all => setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data})))
-      // .then(all => console.log(all[1]))
+    .all([daysAPI, appointmentsAPI, interviewersAPI])
+    .then(all => setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data})))
+    // .then(all => console.log(all[1]))
   }, [])
 
+  // allow us to chnage the local state when we book an interview
+  function bookInterview(id, interview) {
+    console.log(id, interview);
+  }
+  
   // create an array of Appointment components to render out
   const appointments = getAppointmentsForDay(state, state.day)
   const appointmentComponents = appointments.map(item => {
@@ -39,6 +44,7 @@ function Application(props) {
         time={item.time}
         interview={interview}
         interviewers={getInterviewersForDay(state, state.day)}
+        bookInterview={bookInterview}
       />
     )
   })

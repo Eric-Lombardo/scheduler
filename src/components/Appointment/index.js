@@ -16,6 +16,17 @@ const CREATE = "CREATE";
 
 function Appointment(props) {
   const { mode, transition, back } = useVisualMode(props.interview ? SHOW : EMPTY);
+  
+  // allow us to chnage the local state when we book an interview
+  // passed down from APPLICATION, and from here its going to FORM
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+
+    props.bookInterview(props.id, interview) // testing this out should console.log id, interview obj
+  }
 
   return (
     <article className="appointment">
@@ -25,6 +36,7 @@ function Appointment(props) {
       {mode === CREATE && <Form 
         interviewers={props.interviewers} 
         onCancel={back}
+        onSave={save} // just added now
         />
       }
     </article>
