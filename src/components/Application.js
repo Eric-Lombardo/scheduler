@@ -30,7 +30,19 @@ function Application(props) {
 
   // allow us to chnage the local state when we book an interview
   function bookInterview(id, interview) {
-    console.log(id, interview);
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    return axios
+      .put(`/api/appointments/${id}`, {interview: interview})
+      .then(() => setState({...state, appointments}))
   }
   
   // create an array of Appointment components to render out

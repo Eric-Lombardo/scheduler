@@ -5,6 +5,7 @@ import Show from './Show'
 import Empty from './Empty'
 import Form from './Form'
 import useVisualMode from '../../hooks/useVisualMode'
+import Status from './Status'
 
 import "components/Appointment/styles.scss";
 
@@ -12,6 +13,7 @@ import "components/Appointment/styles.scss";
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
+const SAVING = "SAVING";
 
 
 function Appointment(props) {
@@ -25,12 +27,14 @@ function Appointment(props) {
       interviewer
     };
 
-    props.bookInterview(props.id, interview) // testing this out should console.log id, interview obj
+    transition(SAVING);
+    props.bookInterview(props.id, interview).then(() => transition(SHOW))
   }
 
   return (
     <article className="appointment">
       <Header time={props.time}/>
+      {mode === SAVING && <Status />}
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)}/>}
       {mode === SHOW && <Show student={props.interview.student} interviewer={props.interview.interviewer}/>}
       {mode === CREATE && <Form 
