@@ -12,7 +12,6 @@ function useApplicationData() {
   })
   const setDay = day => setState({...state, day})
 
-
   // api request to fetch data
   useEffect(() => {
     const daysAPI = axios.get('/api/days')
@@ -35,6 +34,8 @@ function useApplicationData() {
       [id]: appointment
     };
 
+    state.days[getDayIdFromAppointmentId(id)].spots -= 1
+
     return axios
       .put(`/api/appointments/${id}`, {interview: interview})
       .then(() => setState({...state, appointments}))
@@ -51,11 +52,25 @@ function useApplicationData() {
       [id]: appointment
     }
 
+    state.days[getDayIdFromAppointmentId(id)].spots += 1
+
     return axios
       .delete(`/api/appointments/${id}`, {interview: null})
       .then(() => setState({...state, appointments}))
   }
 
+
+
+
+  function getDayIdFromAppointmentId(id) {
+    if (id === 1 || id === 2 || id === 3 || id === 4 || id === 5) {return 0}
+    if (id === 6 || id === 7 || id === 8 || id === 9 || id === 10) {return 1}
+    if (id === 11 || id === 12 || id === 13 || id === 14 || id === 15) {return 2}
+    if (id === 16 || id === 17 || id === 18 || id === 19 || id === 20) {return 3}
+    if (id === 21 || id === 22 || id === 23 || id === 24 || id === 25) {return 4}
+  }
+
+  
 
   return {state, setDay, bookInterview, cancelInterview}
 }
