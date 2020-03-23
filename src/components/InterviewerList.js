@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import InterviewerListItem from './InterviewerListItem'
 
@@ -10,6 +11,11 @@ import 'components/InterviewerList.scss'
 // onChange:function - a function that accepts an interviewer id
 
 function InterviewerList(props) {
+
+    InterviewerList.propTypes = {
+      value: PropTypes.number,
+      onChange: PropTypes.func.isRequired
+    }
 
   return (
     <section className="interviewers">

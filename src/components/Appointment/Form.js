@@ -58,7 +58,7 @@ function Form(props) {
         </form>
         <InterviewerList 
           interviewers={props.interviewers} 
-          value={interviewer}  
+          value={interviewer} 
           onChange={interviewerId => {
             setInterviewer(interviewerId)
           }} 
