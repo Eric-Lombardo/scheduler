@@ -50,7 +50,7 @@ function Appointment(props) {
   }
 
   return (
-    <article className="appointment">
+    <article data-testid="appointment" className="appointment">
       <Header time={props.time}/>
       {mode === CONFIRM && <Confirm 
         message="Delete appointment"
@@ -80,8 +80,8 @@ function Appointment(props) {
       }
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)}/>}
       {mode === SHOW && <Show 
-        student={props.interview.student}
-        interviewer={props.interview.interviewer}
+        student={props.interview && props.interview.student}
+        interviewer={props.interview && props.interview.interviewer}
         onDelete={() => transition(CONFIRM)}
         onEdit={() => transition(EDIT)}
         />

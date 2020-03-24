@@ -8,6 +8,7 @@ import { getAppointmentsForDay, getInterviewersForDay, getInterview } from '../h
 
 function Application(props) {
   const {state, setDay, bookInterview, cancelInterview} = useApplicationData();
+  // console.log('Application', state.days[0], state.appointments['1']);
   
   // create an array of Appointment components to render out
   const appointments = getAppointmentsForDay(state, state.day)
@@ -26,7 +27,7 @@ function Application(props) {
     )
   })
   appointmentComponents.push(<Appointment key="last" item="5pm"/>)
-
+  
   return (
     <main className="layout">
       <section className="sidebar">

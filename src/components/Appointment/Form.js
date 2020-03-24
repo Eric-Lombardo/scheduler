@@ -23,6 +23,7 @@ function Form(props) {
 
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
+  const [error, setError] = useState("")
 
   function reset() {
     setName("")
@@ -34,11 +35,14 @@ function Form(props) {
     props.onCancel()
   }
 
-  function save() {
-    // MAKE SURE USER CANT SUBMIT WITHOUT TYPING NAME AND CHOOSING INTERVIWER
-    if (name && interviewer) {
-      props.onSave(name, interviewer)
+  function validate() {
+    if (name === "") {
+      setError("Student name cannot be blank");
+      return;
     }
+    
+    setError("")
+    props.onSave(name, interviewer);
   }
 
   return (
@@ -46,6 +50,7 @@ function Form(props) {
       <section className="appointment__card-left">
         <form autoComplete="off" onSubmit={event => event.preventDefault()}>
           <input
+            data-testid="student-name-input"
             className="appointment__create-input text--semi-bold"
             name="name"
             type="text"
@@ -56,18 +61,17 @@ function Form(props) {
             }}
           />
         </form>
+        <section className="appointment__validation">{error}</section>
         <InterviewerList 
           interviewers={props.interviewers} 
           value={interviewer} 
-          onChange={interviewerId => {
-            setInterviewer(interviewerId)
-          }} 
+          onChange={setInterviewer} 
         />
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button onClick={cancel} danger>Cancel</Button>
-          <Button onClick={save} confirm>Save</Button>
+          <Button onClick={validate} confirm>Save</Button>
         </section>
       </section>
     </main>

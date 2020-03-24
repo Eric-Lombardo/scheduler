@@ -5,7 +5,7 @@ import axios from 'axios'
 function useApplicationData() {
   // state logic
   const [state, setState] = useState({
-    day: "Tuesday",
+    day: "Monday",
     days: [],
     appointments: {},
     interviewers: {}
@@ -41,10 +41,10 @@ function useApplicationData() {
 
     return axios
       .put(`/api/appointments/${id}`, {interview: interview})
-      .then(() => {
-        setState({...state, appointments})
-        axios.get('/api/days').then(response => setState({...state, days: response.data}))
-      })
+      .then(() => axios.get('/api/days'))
+      .then(response => {
+        setState({...state, appointments, days: response.data})
+      });
   }
 
   function cancelInterview(id) {
@@ -64,10 +64,9 @@ function useApplicationData() {
 
     return axios
       .delete(`/api/appointments/${id}`, {interview: null})
-      .then(() => {
-        setState({...state, appointments})
-        axios.get('/api/days').then((response) => setState({...state, days: response.data}))
-    })
+      .then(() => axios.get('/api/days'))
+      .then(response => setState({...state, appointments, days: response.data}))
+
   }
 
 

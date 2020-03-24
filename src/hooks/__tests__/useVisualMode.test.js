@@ -47,7 +47,7 @@ test("useVisualMode should replace the current mode", () => {
 
   act(() => result.current.transition(SECOND));
   expect(result.current.mode).toBe(SECOND);
-
+  
   act(() => result.current.transition(THIRD, true));
   expect(result.current.mode).toBe(THIRD);
 
