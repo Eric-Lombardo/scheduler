@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 
 // The Form component should track the following state:
@@ -16,23 +16,23 @@ import React, { useState } from 'react'
 // - onSave:Function
 // - onCancel:Function
 
-import Button from '../Button'
-import InterviewerList from '../InterviewerList'
+import Button from '../Button';
+import InterviewerList from '../InterviewerList';
 
 function Form(props) {
 
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
 
   function reset() {
-    setName("")
-    setInterviewer(null)
+    setName("");
+    setInterviewer(null);
   }
 
   function cancel() {
-    reset()
-    props.onCancel()
+    reset();
+    props.onCancel();
   }
 
   function validate() {
@@ -41,7 +41,7 @@ function Form(props) {
       return;
     }
     
-    setError("")
+    setError("");
     props.onSave(name, interviewer);
   }
 
@@ -57,15 +57,15 @@ function Form(props) {
             placeholder="Enter Student Name"
             value={name}
             onChange={event => {
-              setName(event.target.value)
+              setName(event.target.value);
             }}
           />
         </form>
         <section className="appointment__validation">{error}</section>
-        <InterviewerList 
-          interviewers={props.interviewers} 
-          value={interviewer} 
-          onChange={setInterviewer} 
+        <InterviewerList
+          interviewers={props.interviewers}
+          value={interviewer}
+          onChange={setInterviewer}
         />
       </section>
       <section className="appointment__card-right">
@@ -75,7 +75,7 @@ function Form(props) {
         </section>
       </section>
     </main>
-  )
+  );
 }
 
-export default Form
+export default Form;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 // takes in these props
 // message:String eg. "Could not delete appointment."
@@ -18,7 +18,7 @@ function Error(props) {
         alt="Close"
       />
     </main>
-  )
+  );
 }
 
-export default Error
+export default Error;

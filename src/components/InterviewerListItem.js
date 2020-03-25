@@ -1,7 +1,7 @@
-import React from 'react'
-import classNames from 'classnames'
+import React from 'react';
+import classNames from 'classnames';
 
-import 'components/InterviewerListItem.scss'
+import 'components/InterviewerListItem.scss';
 
 // === THE PROPS IT TAKES ==========================
 // id:number - the id of the interviewer
@@ -16,11 +16,11 @@ function InterviewerListItem(props) {
   const interviewerClass = classNames({
     'interviewers__item': true,
     'interviewers__item--selected': props.selected
-  })
+  });
 
   return (
-    <li 
-      key={props.id} 
+    <li
+      key={props.id}
       className={interviewerClass}
       onClick={props.setInterviewer}
     >
@@ -31,7 +31,7 @@ function InterviewerListItem(props) {
       />
       {props.selected && props.name}
     </li>
-  )
+  );
 }
 
-export default InterviewerListItem
+export default InterviewerListItem;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 // the props it takes in
 // message:String eg. "Deleting"
@@ -14,7 +14,7 @@ function Status(props) {
       />
       <h1 className="text--semi-bold">{props.message}</h1>
     </main>
-  )
+  );
 }
 
-export default Status
+export default Status;

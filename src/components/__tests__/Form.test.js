@@ -14,21 +14,21 @@ describe("Form Component", () => {
   ];
 
   it("renders without student name if not provided", () => {
-    const { getByPlaceholderText } = render(<Form interviewers={interviewers}/>)
+    const { getByPlaceholderText } = render(<Form interviewers={interviewers}/>);
     expect(getByPlaceholderText("Enter Student Name")).toHaveValue("");
   });
 
   it("renders with initial student name", () => {
-    const { getByTestId } = render(<Form interviewers={interviewers} name="Lydia Miller-Jones" />)
+    const { getByTestId } = render(<Form interviewers={interviewers} name="Lydia Miller-Jones" />);
     expect(getByTestId("student-name-input")).toHaveValue("Lydia Miller-Jones");
   });
 
 
 
   it("validates that the student name is not blank", () => {
-    const onSave = jest.fn()
-    const { getByText } = render(<Form interviewers={interviewers} onSave={onSave}/>)
-    fireEvent.click(getByText("Save"))
+    const onSave = jest.fn();
+    const { getByText } = render(<Form interviewers={interviewers} onSave={onSave}/>);
+    fireEvent.click(getByText("Save"));
 
     /* 1. validation is shown */
     expect(getByText(/student name cannot be blank/i)).toBeInTheDocument();

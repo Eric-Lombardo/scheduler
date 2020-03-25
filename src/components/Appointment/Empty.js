@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 // the props it takes in
 // onAdd:Function to be called when the user clicks the Add button
@@ -13,7 +13,7 @@ function Empty(props) {
         alt="Add"
       />
     </main>
-  )
+  );
 }
 
-export default Empty
+export default Empty;

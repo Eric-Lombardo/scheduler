@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 // takes in these props
 // student:String eg. "Lydia Miller-Jones"
@@ -9,11 +9,11 @@ import React from 'react'
 function Show(props) {
 
   function cancelInterview() {
-    props.onDelete()
+    props.onDelete();
   }
 
   function editInterview() {
-    props.onEdit()
+    props.onEdit();
   }
 
   return (
@@ -32,7 +32,7 @@ function Show(props) {
             className="appointment__actions-button"
             src="images/edit.png"
             alt="Edit"
-            />
+          />
           <img
             onClick={cancelInterview}
             className="appointment__actions-button"
@@ -42,7 +42,7 @@ function Show(props) {
         </section>
       </section>
     </main>
-  )
+  );
 }
 
-export default Show
+export default Show;

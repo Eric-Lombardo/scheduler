@@ -9,4 +9,4 @@ describe('Appointment component', () => {
   it("renders without crashing", () => {
     render(<Appointment />);
   });
-})
+});

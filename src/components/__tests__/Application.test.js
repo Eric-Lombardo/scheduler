@@ -14,29 +14,29 @@ describe("Application Component", () => {
     const { getByText } = render(<Application />);
     
     return waitForElement(() => getByText('Monday'))
-    .then(() => {
-      fireEvent.click(getByText('Tuesday'))
-      expect(getByText('Leopold Silvers')).toBeInTheDocument()
-    })
+      .then(() => {
+        fireEvent.click(getByText('Tuesday'));
+        expect(getByText('Leopold Silvers')).toBeInTheDocument();
+      });
   });
   
-  it("loads data, books an interview and reduces the spots remaining for Monday by 1", async () => {
+  it("loads data, books an interview and reduces the spots remaining for Monday by 1", async() => {
     const { container } = render(<Application />);
     
-    await waitForElement(() => getByText(container, "Archie Cohen"))
+    await waitForElement(() => getByText(container, "Archie Cohen"));
     
-    const targetFirstAppointment = getAllByTestId(container, "appointment")[0]
+    const targetFirstAppointment = getAllByTestId(container, "appointment")[0];
 
-    fireEvent.click(getByAltText(targetFirstAppointment, "Add"))
-    fireEvent.change(getByPlaceholderText(targetFirstAppointment, "Enter Student Name"), {target: {value: "Lydia Miller-Jones"}})
-    fireEvent.click(getByAltText(targetFirstAppointment, "Sylvia Palmer"))
-    fireEvent.click(getByText(targetFirstAppointment, "Save"))
+    fireEvent.click(getByAltText(targetFirstAppointment, "Add"));
+    fireEvent.change(getByPlaceholderText(targetFirstAppointment, "Enter Student Name"), {target: {value: "Lydia Miller-Jones"}});
+    fireEvent.click(getByAltText(targetFirstAppointment, "Sylvia Palmer"));
+    fireEvent.click(getByText(targetFirstAppointment, "Save"));
 
-    expect(getByText(targetFirstAppointment, "Saving")).toBeInTheDocument()
-    await waitForElement(() => getByText(targetFirstAppointment, "Lydia Miller-Jones"))
+    expect(getByText(targetFirstAppointment, "Saving")).toBeInTheDocument();
+    await waitForElement(() => getByText(targetFirstAppointment, "Lydia Miller-Jones"));
   });
 
-  it("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {
+  it("loads data, cancels an interview and increases the spots remaining for Monday by 1", async() => {
     // 1. Render the Application.
     const { container } = render(<Application />);
   
@@ -56,7 +56,7 @@ describe("Application Component", () => {
     ).toBeInTheDocument();
   });
 
-  it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
+  it("loads data, edits an interview and keeps the spots remaining for Monday the same", async() => {
     // 1. Render the Application.
     const { container } = render(<Application />);
 
@@ -70,17 +70,17 @@ describe("Application Component", () => {
     fireEvent.click(queryByAltText(appointment, "Edit"));
   
     // 4. target input with placeholder "enter name" and change name
-    fireEvent.change(getByPlaceholderText(appointment, "Enter Student Name"), {target: {value: "Eric"}})
+    fireEvent.change(getByPlaceholderText(appointment, "Enter Student Name"), {target: {value: "Eric"}});
 
     // 7. fireevent to click on save
-    fireEvent.click(getByText(appointment, "Save"))
+    fireEvent.click(getByText(appointment, "Save"));
 
     // 8. check if the name and interviwer chosen is in the dom
-    expect(getByText(appointment, "Saving")).toBeInTheDocument()
-    await waitForElement(() => getByText(appointment, "Eric"))
-  })
+    expect(getByText(appointment, "Saving")).toBeInTheDocument();
+    await waitForElement(() => getByText(appointment, "Eric"));
+  });
 
-  it("shows the delete error when failing to delete an appointment", async () => {
+  it("shows the delete error when failing to delete an appointment", async() => {
     axios.delete.mockRejectedValueOnce();
 
     const { container } = render(<Application />);
@@ -105,7 +105,7 @@ describe("Application Component", () => {
     expect(getByText(container, "Archie Cohen")).toBeInTheDocument();
   });
 
-  it("shows the save error when failing to save an appointment", async () => {
+  it("shows the save error when failing to save an appointment", async() => {
     axios.put.mockRejectedValueOnce();
 
     const { container } = render(<Application />);
@@ -128,6 +128,6 @@ describe("Application Component", () => {
 
     expect(getByText(container, "Archie Cohen")).toBeInTheDocument();
   });
-})
+});
 
 

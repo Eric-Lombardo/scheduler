@@ -6,18 +6,18 @@ import { action } from "@storybook/addon-actions";
 import "index.scss";
 
 import Button from "components/Button";
-import DayListItem from 'components/DayListItem'
-import DayList from 'components/DayList'
-import InterviewerListItem from 'components/InterviewerListItem'
-import InterviewerList from 'components/InterviewerList'
-import Appointment from 'components/Appointment/index'
-import Header from 'components/Appointment/Header'
-import Empty from 'components/Appointment/Empty'
-import Show from 'components/Appointment/Show'
-import Confirm from 'components/Appointment/Confirm'
-import Status from 'components/Appointment/Status'
-import Error from 'components/Appointment/Error'
-import Form from 'components/Appointment/Form'
+import DayListItem from 'components/DayListItem';
+import DayList from 'components/DayList';
+import InterviewerListItem from 'components/InterviewerListItem';
+import InterviewerList from 'components/InterviewerList';
+import Appointment from 'components/Appointment/index';
+import Header from 'components/Appointment/Header';
+import Empty from 'components/Appointment/Empty';
+import Show from 'components/Appointment/Show';
+import Confirm from 'components/Appointment/Confirm';
+import Status from 'components/Appointment/Status';
+import Error from 'components/Appointment/Error';
+import Form from 'components/Appointment/Form';
 
 // Button story
 storiesOf("Button", module)
@@ -36,17 +36,17 @@ storiesOf("Button", module)
     </Button>
   ));
 
-// DayListItem story  
+// DayListItem story
 storiesOf("DayListItem", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
   })
   .add("Unselected", () => <DayListItem name="Monday" spots={5} />)
-  .add("Selected", () => <DayListItem name="Monday" spots={5} selected />) 
+  .add("Selected", () => <DayListItem name="Monday" spots={5} selected />)
   .add("Full", () => <DayListItem name="Monday" spots={0} />)
   .add("Clickable", () => (
     <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} />
-));
+  ));
 
 // DayList story
 const days = [
@@ -113,7 +113,7 @@ storiesOf("InterviewerListItem", module)
     />
   ));
 
-// InterviewerList story 
+// InterviewerList story
 const interviewers = [
   { id: 1, name: "Sylvia Palmer", avatar: "https://i.imgur.com/LpaY82x.png" },
   { id: 2, name: "Tori Malcolm", avatar: "https://i.imgur.com/Nmx0Qxo.png" },
@@ -147,44 +147,44 @@ storiesOf("Appointment", module)
   })
   .add("Header", () => <Header time="12pm"/>)
   .add("Empty", () => <Empty onAdd={action("onAdd")}/>)
-  .add("Show", () => 
-    <Show 
+  .add("Show", () =>
+    <Show
       student="Lydia Miller-Jones"
       interviewer={interviewers[0]}
       onEdit={action("onEdit")}
       onDelete={action("onDelete")}
     />
   )
-  .add("Confirm", () => 
-    <Confirm 
+  .add("Confirm", () =>
+    <Confirm
       message="Delete the appointment?"
       onConfirm={action("onConfirm")}
       onCancel={action("onCancel")}
     />
   )
-  .add("Status Deleting", () => 
-    <Status 
+  .add("Status Deleting", () =>
+    <Status
       message="Deleting"
     />
   )
-  .add("Status Saving", () => 
-    <Status 
+  .add("Status Saving", () =>
+    <Status
       message="Saving"
     />
   )
-  .add("Error Saving", () => 
-    <Error 
+  .add("Error Saving", () =>
+    <Error
       message="Could not save appointment."
       onClose={action("onClose")}
     />
   )
-  .add("Error Deleting", () => 
-    <Error 
+  .add("Error Deleting", () =>
+    <Error
       message="Could not delete appointment."
       onClose={action("onClose")}
     />
   )
-  .add("Form Edit", () => 
+  .add("Form Edit", () =>
     <Form
       name="Person A"
       interviewers={interviewers}
@@ -193,7 +193,7 @@ storiesOf("Appointment", module)
       onCancel={action("onCancel")}
     />
   )
-  .add("Form Create", () => 
+  .add("Form Create", () =>
     <Form
       interviewers={interviewers}
       onSave={action("onSave")}
@@ -215,4 +215,4 @@ storiesOf("Appointment", module)
       />
       <Appointment id="last" time="1pm" />
     </>
-  ))
+  ));

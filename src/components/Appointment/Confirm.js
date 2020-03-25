@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-import Button from '../Button'
+import Button from '../Button';
 
 // takes in these props
 // message:String eg. "Delete the appointment?"
@@ -16,7 +16,7 @@ function Confirm(props) {
         <Button onClick={props.onConfirm} danger>Confirm</Button>
       </section>
     </main>
-  )
+  );
 }
 
-export default Confirm
+export default Confirm;

@@ -1,6 +1,6 @@
 export function getAppointmentsForDay(state, day) {
-  let appointmentIdArr = []
-  let outputArr = []
+  let appointmentIdArr = [];
+  let outputArr = [];
 
   // target specific day
   for (const item of state.days) {
@@ -9,19 +9,19 @@ export function getAppointmentsForDay(state, day) {
     }
   }
 
-  // loop over appointmentIdArr comparing where 
-  // it's id matches the id of states.appointments 
+  // loop over appointmentIdArr comparing where
+  // it's id matches the id of states.appointments
   for (const key in state.appointments) {
     if (appointmentIdArr.indexOf(state.appointments[key].id) !== -1)
-    outputArr.push(state.appointments[key])
+      outputArr.push(state.appointments[key]);
   }
-  return outputArr
+  return outputArr;
 }
 
 // ======================================================================
 export function getInterviewersForDay(state, day) {
-  let interviewerList = []
-  let outputArr = []
+  let interviewerList = [];
+  let outputArr = [];
 
   // target specific day
   for (const item of state.days) {
@@ -32,22 +32,24 @@ export function getInterviewersForDay(state, day) {
 
   // fetching interviewers info by using the id's in interviewerList
   for (let item of interviewerList) {
-    if(state.interviewers[item]) {
-      outputArr.push(state.interviewers[item])
+    if (state.interviewers[item]) {
+      outputArr.push(state.interviewers[item]);
     }
   }
-  return outputArr
+  return outputArr;
 }
 // ======================================================================
 
 export function getInterview(state, interview) {
-  if (interview === null) {return null}
+  if (interview === null) {
+    return null;
+  }
 
-  let interviewerId = interview.interviewer
-  let interviewerInfo = state.interviewers[interviewerId]
+  let interviewerId = interview.interviewer;
+  let interviewerInfo = state.interviewers[interviewerId];
 
   return ({
     student: interview.student,
     interviewer: interviewerInfo
-  })
+  });
 }
