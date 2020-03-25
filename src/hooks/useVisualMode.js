@@ -1,12 +1,11 @@
 import { useState } from 'react'
 
 function useVisualMode(initialMode) {
-  const [mode, setMode] = useState(initialMode) // string
-  const [history, setHistory] = useState([initialMode]); // array
+  const [mode, setMode] = useState(initialMode) // input type = string
+  const [history, setHistory] = useState([initialMode]); // input type = array
 
   function transition(newMode, replaceBool) {
     setMode(newMode)
-    // replaceBool ? setHistory(prev => [...prev, initialMode]) : history.push(newMode)
 
     if (replaceBool) {
       let copyOfHistory = [...history]
@@ -17,14 +16,7 @@ function useVisualMode(initialMode) {
     }
   }
   
-  function back() {
-    // if (history.length >= 2) {
-    //     history.pop()
-    //     setMode(history[history.length - 1])
-    //   } else {
-    //       setMode(history[0])
-    //     }
-        
+  function back() {        
     if (history.length <= 2 ) {
       setMode(history[0])
     } else {

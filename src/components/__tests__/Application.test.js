@@ -21,16 +21,11 @@ describe("Application Component", () => {
   });
   
   it("loads data, books an interview and reduces the spots remaining for Monday by 1", async () => {
-    const { container, debug } = render(<Application />);
+    const { container } = render(<Application />);
     
-    // debug()
-
     await waitForElement(() => getByText(container, "Archie Cohen"))
-
-    // debug()
     
     const targetFirstAppointment = getAllByTestId(container, "appointment")[0]
-    // console.log("this is what the first appointment looks like ====> ", prettyDOM(targetFirstAppointment))
 
     fireEvent.click(getByAltText(targetFirstAppointment, "Add"))
     fireEvent.change(getByPlaceholderText(targetFirstAppointment, "Enter Student Name"), {target: {value: "Lydia Miller-Jones"}})
@@ -39,13 +34,6 @@ describe("Application Component", () => {
 
     expect(getByText(targetFirstAppointment, "Saving")).toBeInTheDocument()
     await waitForElement(() => getByText(targetFirstAppointment, "Lydia Miller-Jones"))
-    
-    // console.log("this is what the first appointment looks like AFTER ====> ", prettyDOM(targetFirstAppointment))
-    // debug()
-    
-    // const targetMondayDayList = getAllByTestId(container, "day").find(day => queryByText(day, "Monday"))
-    // console.log(prettyDOM(targetMondayDayList))
-    // expect(getByText(targetMondayDayList, "no spots remaining")).toBeInTheDocument();
   });
 
   it("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {
@@ -70,7 +58,7 @@ describe("Application Component", () => {
 
   it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
     // 1. Render the Application.
-    const { container, debug } = render(<Application />);
+    const { container } = render(<Application />);
 
     // 2. Wait until the text "Archie Cohen" is displayed.
     await waitForElement(() => getByText(container, "Archie Cohen"));

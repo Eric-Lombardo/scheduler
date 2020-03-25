@@ -26,7 +26,7 @@ const ERROR_DELETE = "ERROR_DELETE";
 function Appointment(props) {
   const { mode, transition, back } = useVisualMode(props.interview ? SHOW : EMPTY);
   
-  // allow us to chnage the local state when we book an interview
+  // allow us to change the local state when we book an interview
   // passed down from APPLICATION, and from here its going to FORM
   function save(name, interviewer) {
     const interview = {

@@ -5,7 +5,7 @@ import "components/Button.scss";
 
 function Button(props) {
 
-   // build css style string with 3rd party dependency 'classname'
+   // build css style string with the 'classname' external library
    let buttonClass = classNames({
       button: true,
       'button--confirm': props.confirm,
