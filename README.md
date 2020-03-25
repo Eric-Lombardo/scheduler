@@ -11,17 +11,24 @@ Install dependencies with `npm install`.
 ## Walkthrough
 ### On page load
 The user is shown a modern interface with access to specific days of the week through the left side-bar. Clicking on a day will update the main interface with available or booked slots for that day. From here a user can create, edit or delete their appointments. Their choice of day will be highlighted with a white background in the side-bar.
+!["On page load"](https://github.com/Eric-Lombardo/scheduler/blob/master/docs/home.png?raw=true)
 
 ## Creating an appointment
 Clicking on the "+" icon for an available slot will display a small form where the user can fill out their name and choose a specific interviewer from a list of available interviewers for that given day. Next, the user can save the appointment to the database by clicking on the "Save" button. This will save the information from the form to the database and then display the saved appointment to the user, confirming their name, chosen interviewer and time slot.
-### On second thought ...
+!["Empty form"](https://github.com/Eric-Lombardo/scheduler/blob/master/docs/empty_form.png?raw=true)
+!["Created a new appoitnment"](https://github.com/Eric-Lombardo/scheduler/blob/master/docs/show_new_appointment.png?raw=true)
+### "Hold up ... that's not what I wanted to do"
 While creating a new appointment the user also has the option to change their minds and not fill out the form by clicking on the "Cancel" button. This will bring the user back to the main interface like it was before with the "+" button visible for that time slot
 
 ## Editing an appointment
 After the creation of an appointment, the user can edit their names or choice of interviewer by hovering over an existing appointment and clicking on the edit icon. This will display an already filled-out appointment with the current info. From here, the user can change their name and choice of interviewer. Once the user has changed the info, they can either save their changes by clicking on the "Save" button or back out and display the old appointment by clicking on the "Cancel" button
+!["Edit appoitnment"](https://github.com/Eric-Lombardo/scheduler/blob/master/docs/filled_out_form_isolated.png?raw=true)
+!["Show editted appointment"](https://github.com/Eric-Lombardo/scheduler/blob/master/docs/show_edit_appointment.png?raw=true)
 
 ## Deleting an appointment
 After the creation of an appointment, the user can delete an appointment by hovering over an existing appointment and clicking on the trash bin icon. This is a destructive action, so a confirmation box will be displayed allowing the user to cancel or confirm their request. After confirming the delete process, the appointment will be gone and the user will now be presenented witht he "+" icon for that time slot showing them their action has been recorded.
+!["Delete confirmation"](https://github.com/Eric-Lombardo/scheduler/blob/master/docs/delete_confirmation.png?raw=true)
+!["Show delete success"](https://github.com/Eric-Lombardo/scheduler/blob/master/docs/show_delete_confirmation.png?raw=true)
 
 ## Spots available
 All days currently hold a maximum of 5 appointments. Creating or deleting an appointment will update the available spots remaining for that particular day.
