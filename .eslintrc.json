@@ -1,4 +1,5 @@
-{
-  "extends": "react-app",
+{ 
+  // "extends": "react-app",
+  "extends": "eslint:recommended",
   "parser": "babel-eslint"
 }
