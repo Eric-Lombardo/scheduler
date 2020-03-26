@@ -18,21 +18,23 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: npm test
-deploy:
-  machine:
-    enabled: true
 
-  working_directory: ~/client
+  deploy:
+    machine:
+      enabled: true
 
-  steps:
-    - add_ssh_keys:
-        fingerprints:
-          - "f4:b4:56:33:e4:90:e2:7c:5e:57:85:e6:bb:bf:d7:fb"
-    - checkout
-    - run:
-        name: Push Master to Production
-        command: |
-          git push https://github.com/Eric-Lombardo/scheduler.git master:production
+    working_directory: ~/client
+
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "f4:b4:56:33:e4:90:e2:7c:5e:57:85:e6:bb:bf:d7:fb"
+      - checkout
+      - run:
+          name: Push Master to Production
+          command: |
+            git push https://github.com/Eric-Lombardo/scheduler.git master:production
+
 workflows:
   version: 2
   test_and_deploy:
